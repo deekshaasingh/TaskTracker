@@ -1,0 +1,35 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: "Segoe UI", system-ui, sans-serif; background: #f4f6f8; color: #1a1a1a; }
+.app-container { max-width: 900px; margin: 0 auto; padding: 24px 16px 60px; }
+header h1 { text-align: center; color: #2d3142; margin-bottom: 24px; }
+.task-form, .filter-bar { background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 20px; }
+.form-group { margin-bottom: 14px; display: flex; flex-direction: column; flex: 1; }
+.form-row { display: flex; gap: 12px; flex-wrap: wrap; }
+label { font-weight: 600; margin-bottom: 6px; font-size: 0.9rem; color: #444; }
+input, textarea, select { padding: 8px 10px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 0.95rem; }
+.error-text { color: #d32f2f; font-size: 0.8rem; margin-top: 4px; }
+.form-actions { display: flex; gap: 10px; margin-top: 10px; }
+button { padding: 8px 16px; border: none; border-radius: 6px; background: #4361ee; color: #fff; cursor: pointer; font-weight: 600; }
+button:hover { background: #3a56d4; }
+.btn-secondary { background: #9ca3af; }
+.btn-danger { background: #e63946; }
+.filter-bar { display: flex; gap: 16px; flex-wrap: wrap; }
+.task-list { display: grid; gap: 14px; }
+.task-card { background: #fff; border-left: 5px solid #4361ee; border-radius: 8px; padding: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+.task-card.priority-high { border-left-color: #e63946; }
+.task-card.priority-medium { border-left-color: #f4a261; }
+.task-card.priority-low { border-left-color: #2a9d8f; }
+.task-card-header { display: flex; justify-content: space-between; align-items: center; }
+.task-description { color: #555; margin: 8px 0; }
+.task-meta { display: flex; gap: 10px; align-items: center; margin-bottom: 10px; font-size: 0.85rem; }
+.badge { padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; text-transform: capitalize; color: #fff; background: #6b7280; }
+.badge.status-pending { background: #f4a261; }
+.badge.status-in-progress { background: #4361ee; }
+.badge.status-completed { background: #2a9d8f; }
+.badge.priority-high { background: #e63946; }
+.badge.priority-medium { background: #f4a261; }
+.badge.priority-low { background: #2a9d8f; }
+.due-date { color: #666; }
+.task-actions { display: flex; gap: 8px; }
+.empty-state { text-align: center; color: #888; padding: 40px 0; }
+@media (max-width: 600px) { .form-row, .filter-bar { flex-direction: column; } }
