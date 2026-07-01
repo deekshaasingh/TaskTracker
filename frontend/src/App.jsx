@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import TaskForm from './components/TaskForm';
@@ -27,6 +27,12 @@ function App() {
   }, [filters]);
 
   useEffect(() => { loadTasks(); }, [loadTasks]);
+
+  const counts = useMemo(() => ({
+    pending: tasks.filter((t) => t.status === 'pending').length,
+    inProgress: tasks.filter((t) => t.status === 'in-progress').length,
+    completed: tasks.filter((t) => t.status === 'completed').length,
+  }), [tasks]);
 
   const handleCreateOrUpdate = async (formData) => {
     try {
@@ -60,16 +66,26 @@ function App() {
 
   return (
     <div className="app-container">
-      <header><h1>Task Tracker</h1></header>
+      <header className="app-header">
+        <h1 className="wordmark">TASK<span>//</span>TRACKER</h1>
+        <p className="tagline">Full-stack task management, built on the MERN stack</p>
+        <div className="stat-readout">
+          <span className="stat"><span className="dot pending" /> PENDING <b>{counts.pending}</b></span>
+          <span className="stat"><span className="dot progress" /> ACTIVE <b>{counts.inProgress}</b></span>
+          <span className="stat"><span className="dot done" /> DONE <b>{counts.completed}</b></span>
+        </div>
+      </header>
 
       <TaskForm onSubmit={handleCreateOrUpdate} editingTask={editingTask} onCancelEdit={handleCancelEdit} />
       <FilterBar filters={filters} onFilterChange={setFilters} />
 
-      {loading ? <p className="empty-state">Loading tasks...</p> : (
+      {loading ? (
+        <p className="empty-state">Loading tasks...</p>
+      ) : (
         <TaskList tasks={tasks} onEdit={handleEdit} onDelete={handleDelete} />
       )}
 
-      <ToastContainer position="bottom-right" autoClose={2500} />
+      <ToastContainer position="bottom-right" autoClose={2500} theme="dark" />
     </div>
   );
 }

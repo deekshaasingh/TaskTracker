@@ -3,6 +3,7 @@ function FilterBar({ filters, onFilterChange }) {
 
   return (
     <div className="filter-bar">
+      <p className="eyebrow" style={{ width: '100%', marginBottom: 0 }}>Filter & Sort</p>
       <div className="form-group">
         <label>Filter by Status</label>
         <select name="status" value={filters.status} onChange={handleChange}>
